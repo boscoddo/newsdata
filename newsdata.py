@@ -17,24 +17,24 @@ def execute_query(query):
 def newsdata():
     """
       - Query 1 for What are the most popular three articles of all time?
-      - Execute query 1 to get results 
+      - Execute query 1 to get results
       - prints sorted list with the most popular article at the top.
     """
     query1 = ("""
-        select title, art_total_views from
-            (select substr(path, 10), count(*) as art_total_views from log
+        select title, art_views from
+            (select substr(path, 10), count(*) as art_views from log
             where path !='/' group by path)
-        as hits, articles where substr = slug order by art_total_views desc limit 3;
+        as hits, articles where substr = slug order by art_views desc limit 3;
         """)
     results = execute_query(query1)
     print('1. What are the most popular three articles of all time?')
-    for title, art_total_views in results:
-        print('{} - {} views'.format(title, art_total_views))
+    for title, art_views in results:
+        print('{} - {} views'.format(title, art_views))
     print ""
 
     """
       - Query 2 Who are the most popular article authors of all time?
-      - Execute query 2 to get results 
+      - Execute query 2 to get results
       - prints sorted list with the most popular author at the top.
     """
     query2 = ("""
@@ -55,12 +55,12 @@ def newsdata():
 
     """
       - Query 3 - On which days did more than 1% of requests lead to errors?
-      - Execute query 3 to get results 
+      - Execute query 3 to get results
       - prints results
     """
     query3 = ("""
         select error_date, http_requests, error_404,
-        error_404 * 100 / http_requests as error_percent from
+        error_404 * 100 / http_requests as err_percent from
             (select date_trunc('day', time) as date_request, count(*)
             as http_requests from log group by date_request)
             as requests,
@@ -74,8 +74,8 @@ def newsdata():
         """)
     results = execute_query(query3)
     print('3. On which days did more than 1% of requests lead to errors?')
-    for error_date, http_requests, error_404, error_percent in results:
-        print("{:%B %d, %Y} - {:.2f}% errors".format(error_date, error_percent))
+    for error_date, http_requests, error_404, err_percent in results:
+        print("{:%B %d, %Y} - {:.2f}% errors".format(error_date, err_percent))
     print ""
 
 
