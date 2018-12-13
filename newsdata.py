@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Udacity Project 1: Log Analysis
 # By Bosco Do
 
