@@ -10,6 +10,11 @@ Task is to create a reporting tool that prints out reports (in plain text) based
 In a terminal window type:
 `python newsdata.py`
 
+## Link to the newsdata.zip database website
+https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
+
+To load the data, cd into the directory and use the command psql -d news -f newsdata.sql
+
 ## Design
 The newsdata.py is a Python Reporting Tool Program using the psycopg2 module to connect to the database.  The newsdata.py script runs 3 seperate queries and prints the results on the command line.
 * Query 1 - From log it calculates the top 3 articles views then sorts by highest total views.
