@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 # Udacity Project 1: Log Analysis
 # By Bosco Do
 
