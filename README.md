@@ -9,7 +9,7 @@ Task is to create a reporting tool that prints out reports (in plain text) based
 ## How to run
 * 1. To excute this code you'll need to setup a Linux virtual machine.  Installing Virtual Box and Vagrant is recommended.
 * 2. You will need to bring the virtual machine online with vagrant up, Then log into it with vagrant ssh.
-* 3. Within the Linux virtual machine, please install PostgreSQL and copy newsdata.sql database (link below) and this logs analysis project to the same directory.
+* 3. Within the Linux virtual machine, please install Python, PostgreSQL, and copy newsdata.sql database (link below) and the logs analysis project to the same directory.
 * 4. To load the data, cd into the directory and use the command psql -d news -f newsdata.sql
 * 5. To excute the code, In a terminal window type: `python newsdata.py`
 
