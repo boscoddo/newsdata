@@ -10,8 +10,8 @@ Task is to create a reporting tool that prints out reports (in plain text) based
 In a terminal window type:
 `python newsdata.py`
 
-## Link to the newsdata.zip database website
-https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip
+## Link to Download the newsdata.zip database
+[Please, click here!](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
 
 To load the data, cd into the directory and use the command psql -d news -f newsdata.sql
 
