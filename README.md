@@ -7,13 +7,14 @@ Task is to create a reporting tool that prints out reports (in plain text) based
 * On which days did more than 1% of requests lead to errors? The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser.
 
 ## How to run
-In a terminal window type:
-`python newsdata.py`
+* 1. To excute this code you'll need to setup a Linux virtual machine.  Installing Virtual Box and Vagrant is recommended.
+* 2. You will need to bring the virtual machine online with vagrant up, Then log into it with vagrant ssh.
+* 3. Within the Linux virtual machine, please install PostgreSQL and copy newsdata.sql database (link below) and this logs analysis project to the same directory.
+* 4. To load the data, cd into the directory and use the command psql -d news -f newsdata.sql
+* 5. To excute the code, In a terminal window type: `python newsdata.py`
 
-## Link to Download the newsdata.zip database
+## Link to Download the newsdata database
 [Please, click here!](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
-
-To load the data, cd into the directory and use the command psql -d news -f newsdata.sql
 
 ## Design
 The newsdata.py is a Python Reporting Tool Program using the psycopg2 module to connect to the database.  The newsdata.py script runs 3 seperate queries and prints the results on the command line.
