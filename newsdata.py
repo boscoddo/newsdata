@@ -1,13 +1,35 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2.7
 # Udacity Project 1: Log Analysis
 # By Bosco Do
 
 import psycopg2
 
 
+def connect(news):
+    """
+      Connect to the PostgreSQL database.
+      Return a database connection.
+    """
+    try:
+        db = psycopg2.connect("dbname={}".format(news))
+    except psycopg2.Error as err:
+        print("Unable to connect!")
+        print(err)
+        sys.exit(1)
+    else:
+        print("Connected!")
+    cursor = db.cursor()
+    return db, cursor
+    """
+      db, cursor : is a tuple.
+      The first element (db) is a connection to the database.
+      The second element (cursor) is a cursor for the database.
+    """
+
+
 # To Execute Queries
 def execute_query(query):
-    db = psycopg2.connect("dbname=news")
+    db, c = connect("news")
     c = db.cursor()
     c.execute(query)
     rows = c.fetchall()
@@ -60,13 +82,13 @@ def newsdata():
       - prints results
     """
     query3 = ("""
-        select error_date, http_requests, error_404,
-        error_404 * 100 / http_requests as err_percent from
+        select to_char(error_date, 'Month DD, YYYY'), http_requests, error_404,
+        round(error_404 * 100.0 / http_requests,2) as err_percent from
             (select date_trunc('day', time) as date_request, count(*)
             as http_requests from log group by date_request)
             as requests,
             (select date_trunc('day', time) as error_date, count(*)
-            as error_404 from log where status = '404 NOT FOUND'
+            as error_404 from log where status != '200 OK'
             group by error_date)
             as errors
         where date_request = error_date
@@ -76,7 +98,7 @@ def newsdata():
     results = execute_query(query3)
     print('3. On which days did more than 1% of requests lead to errors?')
     for error_date, http_requests, error_404, err_percent in results:
-        print("{:%B %d, %Y} - {:.2f}% errors".format(error_date, err_percent))
+        print("{} - {:.2f}% errors".format(error_date, err_percent))
     print ""
 
 
